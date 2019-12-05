@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/tomekwalas/AdventOfCode2019/day_4"
+	"advent-of-code/day_5"
 )
 
 func main() {
-	day_4.GetSolution()
+	day_5.GetSolution()
 }
