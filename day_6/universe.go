@@ -21,17 +21,7 @@ func GetOrbitalTransfers(orbits []Orbit) int {
 	santa := universe.findPathTo("SAN", []string{})
 	you := universe.findPathTo("YOU", []string{})
 
-	i := 0
-	for {
-		if santa[i] == you[i] && santa[i+1] == you[i+1] {
-			i++
-		} else {
-			break
-		}
-
-	}
-	santa = santa[i:]
-	you = you[i:]
+	santa, you = removeCommonPath(santa, you)
 
 	return len(santa) + len(you) - 4
 
@@ -57,6 +47,21 @@ func (u OrbitNode) findPathTo(name string, path []string) []string {
 	}
 
 	return path
+}
+func removeCommonPath(src, dest []string) ([]string, []string) {
+	i := 0
+	for {
+		if src[i] == dest[i] && src[i+1] == dest[i+1] {
+			i++
+		} else {
+			break
+		}
+
+	}
+	src = src[i:]
+	dest = dest[i:]
+
+	return src, dest
 }
 
 func createUniverse(data []Orbit) OrbitNode {
